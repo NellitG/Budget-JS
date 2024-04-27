@@ -1,51 +1,131 @@
-const budgetTracker = {
-  budget: 0,
-  expenses: [],
-  setBudget: function (amount) {
-    this.budget = amount;
-    updateBudgetDisplay();
-  },
-  addExpense: function (description, amount) {
-    this.expenses.push({ description, amount });
-    updateBudgetDisplay();
-  },
-  getTotalExpenses: function () {
-    let totalExpenses = 0;
-    this.expenses.forEach((expense) => {
-      totalExpenses += expense.amount;
-    });
-    return totalExpenses;
-  },
-  calculateRemainingBudget: function () {
-    return this.budget - this.getTotalExpenses();
-  },
-};
-
-function setBudget() {
-  const budgetInput = document.getElementById("budgetInput");
-  const budgetAmount = parseInt(budgetInput.value);
-  if (!isNaN(budgetAmount)) {
-    budgetTracker.setBudget(budgetAmount);
-    budgetInput.value = "";
-  }
-}
-
-function addExpense() {
-  const expenseDescription =
-    document.getElementById("expenseDescription").value;
-  const expenseAmount = parseInt(
-    document.getElementById("expenseAmount").value
+document.addEventListener("DOMContentLoaded", function () {
+  const incomeList = document.getElementById("income-list");
+  const expensesList = document.getElementById("expenses-list");
+  const savingsList = document.getElementById("savings-list");
+  const totalIncomeDisplay = document.getElementById("total-income");
+  const totalExpensesDisplay = document.getElementById("total-expenses");
+  const totalSavingsDisplay = document.getElementById("total-savings");
+  const totalBudgetDisplay = document.getElementById("total-budget");
+  const remainingBudgetDisplay = document.getElementById("remaining-budget");
+  const newIncomeDescriptionInput = document.getElementById(
+    "new-income-description"
   );
-  if (expenseDescription.trim() !== "" && !isNaN(expenseAmount)) {
-    budgetTracker.addExpense(expenseDescription, expenseAmount);
-    document.getElementById("expenseDescription").value = "";
-    document.getElementById("expenseAmount").value = "";
-  }
-}
+  const newIncomeAmountInput = document.getElementById("new-income-amount");
+  const newExpenseDescriptionInput = document.getElementById(
+    "new-expense-description"
+  );
+  const newExpenseAmountInput = document.getElementById("new-expense-amount");
+  const newSavingDescriptionInput = document.getElementById(
+    "new-saving-description"
+  );
+  const newSavingAmountInput = document.getElementById("new-saving-amount");
+  const addIncomeBtn = document.getElementById("add-income");
+  const addExpenseBtn = document.getElementById("add-expense");
+  const addSavingBtn = document.getElementById("add-saving");
 
-function updateBudgetDisplay() {
-  document.getElementById("totalExpenses").textContent =
-    budgetTracker.getTotalExpenses();
-  document.getElementById("remainingBudget").textContent =
-    budgetTracker.calculateRemainingBudget();
-}
+  // Function to calculate and update total income
+  function calculateTotalIncome() {
+    let totalIncome = 0;
+    incomeList.querySelectorAll("li").forEach((item) => {
+      totalIncome += parseFloat(item.dataset.amount);
+    });
+    totalIncomeDisplay.textContent = "$" + totalIncome.toFixed(2);
+    calculateTotalBudget();
+  }
+
+  // Function to calculate and update total expenses
+  function calculateTotalExpenses() {
+    let totalExpenses = 0;
+    expensesList.querySelectorAll("li").forEach((item) => {
+      totalExpenses += parseFloat(item.dataset.amount);
+    });
+    totalExpensesDisplay.textContent = "$" + totalExpenses.toFixed(2);
+    calculateTotalBudget();
+  }
+
+  // Function to calculate and update total savings
+  function calculateTotalSavings() {
+    let totalSavings = 0;
+    savingsList.querySelectorAll("li").forEach((item) => {
+      totalSavings += parseFloat(item.dataset.amount);
+    });
+    totalSavingsDisplay.textContent = "$" + totalSavings.toFixed(2);
+    calculateRemainingBudget(); // Update remaining budget when total savings change
+  }
+
+  // Function to calculate and update total budget
+  function calculateTotalBudget() {
+    const totalIncome = parseFloat(totalIncomeDisplay.textContent.substring(1));
+    const totalExpenses = parseFloat(
+      totalExpensesDisplay.textContent.substring(1)
+    );
+    const totalSavings = parseFloat(
+      totalSavingsDisplay.textContent.substring(1)
+    );
+    const totalBudget = totalIncome - totalExpenses - totalSavings;
+    totalBudgetDisplay.textContent = "$" + totalBudget.toFixed(2);
+    calculateRemainingBudget();
+  }
+
+  // Function to calculate and update remaining budget
+  function calculateRemainingBudget() {
+    const totalBudget = parseFloat(totalBudgetDisplay.textContent.substring(1));
+    remainingBudgetDisplay.textContent = "$" + totalBudget.toFixed(2);
+  }
+
+  // Event listener to add new income
+  addIncomeBtn.addEventListener("click", function () {
+    const description = newIncomeDescriptionInput.value.trim();
+    const amount = parseFloat(newIncomeAmountInput.value);
+    if (description && !isNaN(amount) && amount > 0) {
+      const li = document.createElement("li");
+      li.dataset.amount = amount;
+      li.textContent = `${description}: $${amount.toFixed(2)}`;
+      incomeList.appendChild(li);
+      calculateTotalIncome();
+      newIncomeDescriptionInput.value = "";
+      newIncomeAmountInput.value = "";
+    } else {
+      alert("Please enter a valid description and amount for income.");
+    }
+  });
+
+  // Event listener to add new expense
+  addExpenseBtn.addEventListener("click", function () {
+    const description = newExpenseDescriptionInput.value.trim();
+    const amount = parseFloat(newExpenseAmountInput.value);
+    if (description && !isNaN(amount) && amount > 0) {
+      const li = document.createElement("li");
+      li.dataset.amount = amount;
+      li.textContent = `${description}: $${amount.toFixed(2)}`;
+      expensesList.appendChild(li);
+      calculateTotalExpenses();
+      newExpenseDescriptionInput.value = "";
+      newExpenseAmountInput.value = "";
+    } else {
+      alert("Please enter a valid description and amount for expense.");
+    }
+  });
+
+  // Event listener to add new saving
+  addSavingBtn.addEventListener("click", function () {
+    const description = newSavingDescriptionInput.value.trim();
+    const amount = parseFloat(newSavingAmountInput.value);
+    if (description && !isNaN(amount) && amount > 0) {
+      const li = document.createElement("li");
+      li.dataset.amount = amount;
+      li.textContent = `${description}: $${amount.toFixed(2)}`;
+      savingsList.appendChild(li);
+      calculateTotalSavings(); // Corrected this line
+      newSavingDescriptionInput.value = "";
+      newSavingAmountInput.value = "";
+    } else {
+      alert("Please enter a valid description and amount for saving.");
+    }
+  });
+
+  // Initial calculation of total income, expenses, savings, and budget
+  calculateTotalIncome();
+  calculateTotalExpenses();
+  calculateTotalSavings();
+});

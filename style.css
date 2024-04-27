@@ -1,59 +1,79 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4f4f4;
-}
-
-.centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
+    padding: 0;
+    background-color: #f8f9fa;
 }
 
 .container {
-    max-width: 500px;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    font-size: 40px;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 h2 {
-    color: #333;
-    text-align: center;
+    margin-top: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-input,
-button {
-    width: 100%;
-    padding: 8px;
+li {
     margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 200px;
+    padding: 10px;
+    margin-right: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 button {
-    background-color: #4caf50;
+    padding: 10px 20px;
+    background-color: #007bff;
     color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
+}
+
+#total-income,
+#total-expenses,
+#total-savings,
+#total-budget,
+#remaining-budget {
+    font-weight: bold;
+    font-size: 18px;
+    color: #007bff;
+}
+
+.add-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.summary-section p {
+    margin-bottom: 20px;
 }

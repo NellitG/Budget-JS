@@ -1,33 +1,61 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Budget Tracker</title>
+  <title>Personal Budget Tracker</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="centered-container">
-    <div class="container">
-      <h1>Budget Tracker</h1>
+  <div class="container">
+    <h1>Personal Budget Tracker</h1>
 
-      <label for="budgetInput">Enter Your Budget:</label>
-      <input type="number" id="budgetInput">
-      <button onclick="setBudget()">Set Budget</button>
+    <section class="income-section">
+      <h2>Income</h2>
+      <ul id="income-list">
+        <!-- Income items will be dynamically added here -->
+      </ul>
+      <div class="add-section">
+        <input type="text" id="new-income-description" placeholder="Description">
+        <input type="number" id="new-income-amount" placeholder="Amount">
+        <button id="add-income">Add Income</button>
+      </div>
+      <p>Total Income: <span id="total-income">$0</span></p>
+    </section>
 
-      <label for="expenseDescription">Expense Description:</label>
-      <input type="text" id="expenseDescription">
-      <label for="expenseAmount">Expense Amount:</label>
-      <input type="number" id="expenseAmount">
-      <button onclick="addExpense()">Add Expense</button>
+    <section class="expenses-section">
+      <h2>Expenses</h2>
+      <ul id="expenses-list">
+        <!-- Expense items will be dynamically added here -->
+      </ul>
+      <div class="add-section">
+        <input type="text" id="new-expense-description" placeholder="Description">
+        <input type="number" id="new-expense-amount" placeholder="Amount">
+        <button id="add-expense">Add Expense</button>
+      </div>
+      <p>Total Expenses: <span id="total-expenses">$0</span></p>
+    </section>
 
-      <h2>Total Expenses: <span id="totalExpenses"></span></h2>
-      <h2>Remaining Budget: <span id="remainingBudget"></span></h2>
-    </div>
+    <section class="savings-section">
+      <h2>Savings</h2>
+       <ul id="savings-list">
+            <!-- Savings items will be dynamically added here -->
+        </ul>
+      <div class="add-section">
+        <input type="text" id="new-saving-description" placeholder="Description">
+        <input type="number" id="new-saving-amount" placeholder="Amount">
+        <button id="add-saving">Add Saving</button>
+      </div>
+      <p>Total Savings: <span id="total-savings">$0</span></p>
+    </section>
+
+    <section class="summary-section">
+      <h2>Budget Summary</h2>
+      <p>Total Budget: <span id="total-budget">$0</span></p>
+      <p>Remaining Budget: <span id="remaining-budget">$0</span></p>
+    </section>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
