@@ -78,9 +78,6 @@ button:hover {
     margin-bottom: 20px;
 }
 
-/* style.css */
-
-/* Animation for sections */
 .income-section {
     animation: slideInFromLeft 0.5s ease forwards;
     opacity: 0;
@@ -120,7 +117,7 @@ button:hover {
     }
 }
 
-/* Button hover effect */
+
 button {
     transition: transform 0.2s ease;
 }

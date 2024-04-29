@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const addExpenseBtn = document.getElementById("add-expense");
   const addSavingBtn = document.getElementById("add-saving");
 
-  // Function to calculate and update total income
+ 
   function calculateTotalIncome() {
     let totalIncome = 0;
     incomeList.querySelectorAll("li").forEach((item) => {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     calculateTotalBudget();
   }
 
-  // Function to calculate and update total expenses
+  
   function calculateTotalExpenses() {
     let totalExpenses = 0;
     expensesList.querySelectorAll("li").forEach((item) => {
@@ -43,17 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
     calculateTotalBudget();
   }
 
-  // Function to calculate and update total savings
+  
   function calculateTotalSavings() {
     let totalSavings = 0;
     savingsList.querySelectorAll("li").forEach((item) => {
       totalSavings += parseFloat(item.dataset.amount);
     });
     totalSavingsDisplay.textContent = "$" + totalSavings.toFixed(2);
-    calculateRemainingBudget(); // Update remaining budget when total savings change
+    calculateRemainingBudget(); 
   }
 
-  // Function to calculate and update total budget
+ 
   function calculateTotalBudget() {
     const totalIncome = parseFloat(totalIncomeDisplay.textContent.substring(1));
     const totalExpenses = parseFloat(
@@ -67,13 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
     calculateRemainingBudget();
   }
 
-  // Function to calculate and update remaining budget
+  
   function calculateRemainingBudget() {
     const totalBudget = parseFloat(totalBudgetDisplay.textContent.substring(1));
     remainingBudgetDisplay.textContent = "$" + totalBudget.toFixed(2);
   }
 
-  // Event listener to add new income
+ 
   addIncomeBtn.addEventListener("click", function () {
     const description = newIncomeDescriptionInput.value.trim();
     const amount = parseFloat(newIncomeAmountInput.value);
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Event listener to add new expense
+  
   addExpenseBtn.addEventListener("click", function () {
     const description = newExpenseDescriptionInput.value.trim();
     const amount = parseFloat(newExpenseAmountInput.value);
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Event listener to add new saving
+  
   addSavingBtn.addEventListener("click", function () {
     const description = newSavingDescriptionInput.value.trim();
     const amount = parseFloat(newSavingAmountInput.value);
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Initial calculation of total income, expenses, savings, and budget
+
   calculateTotalIncome();
   calculateTotalExpenses();
   calculateTotalSavings();
