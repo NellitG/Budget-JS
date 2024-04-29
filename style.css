@@ -113,12 +113,12 @@ button:hover {
     }
 }
 
-@keyframes slideInFromRight {
+/* @keyframes slideInFromRight {
     to {
         opacity: 1;
         transform: translateX(0);
     }
-}
+} */
 
 /* Button hover effect */
 button {
