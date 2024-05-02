@@ -1,5 +1,6 @@
-#We need to be financially literate
+#Financially literate
 #A personal budget is important
 
 ##Added a picture. Both background and on the div
-##we need to create a database
+##create a database
+##Come up with a saving plan
